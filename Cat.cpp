@@ -20,16 +20,20 @@ int random(int min, int max){
 	return (rand() % (max - min + 1)) + min;
 }
 
-Cat::Cat(point pointIn) : start(pointIn), position(pointIn), timeAlive(0){}
+Cat::Cat(point pointIn) : start(pointIn), position(pointIn), timeAlive(0),
+furColor(150, 75, 0),
+eyeColor(0, 0, 0),
+noseColor(255, 182, 193),
+whiskerColor(169, 169, 169),
+mouthColor(0, 0, 0),
+tongueColor(255, 105, 180)
+{}
 
 void Cat::draw(SDL_Plotter& screen){
-	for(double i = position.x - radius; i < position.x + radius; i += 0.5){
-		for(double j = position.y - radius; j < position.y + radius; j += 0.5){
-			if(distance(position, i, j) < radius){
-				screen.plotPixel(i, j, 0, 0, 0);
-			}
-		}
-	}
+	drawCat(position, radius,
+                furColor, eyeColor, noseColor,
+                whiskerColor, mouthColor, tongueColor,
+                screen);
 }
 
 void Cat::undraw(SDL_Plotter& screen){
